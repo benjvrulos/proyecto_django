@@ -1,5 +1,7 @@
 from django.shortcuts import render,reverse,redirect
 from .models import Producto,Categoria
+import os
+from django.conf import settings
 
 def index(request):
     return render(request,'Tienda/index.html')
@@ -20,4 +22,11 @@ def agregarProducto(request):
 
     Producto.objects.create(sku = v_sku,nombre = v_nombre,stock = v_stock,precio = v_precio,descripcion = v_descripcion, id_categoria = v_categoria, imagen = v_img)        
 
+    return redirect('mantenedor')
+
+def eliminarProducto(request,sku):
+    producto = Producto.objects.get(sku = sku)
+    ruta_imagen = os.path.join(settings.MEDIA_ROOT, str(producto.imagen))
+    os.remove(ruta_imagen)
+    producto.delete()
     return redirect('mantenedor')
