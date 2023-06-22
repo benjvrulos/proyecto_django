@@ -6,6 +6,11 @@ from django.conf import settings
 def index(request):
     return render(request,'Tienda/index.html')
 
+
+def producto(request):
+    return render(request,'Tienda/producto.html')
+
+
 def mantenedor(request):
     categorias = Categoria.objects.all()
     productos = Producto.objects.all()
