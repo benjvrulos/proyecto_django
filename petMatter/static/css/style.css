@@ -431,6 +431,10 @@ table i {
   font-size: 2rem;
 }
 
+td a {
+  background-color: red;
+}
+
 .clock {
   position: absolute;
   top: 50%;

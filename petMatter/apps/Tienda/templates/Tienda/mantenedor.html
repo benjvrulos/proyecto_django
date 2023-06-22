@@ -132,7 +132,7 @@
             <td>${{p.precio}}</td>
             <td>{{p.stock}}</td>
             <td><i class="fa-solid fa-user-pen"></i></td>
-            <td><a href="{% url 'eliminar-producto' p.sku %}"><i class="fa-solid fa-delete-left"></i></a></td>
+            <td><a class="a-eliminar" href="{% url 'eliminar-producto' p.sku %}"><i class="fa-solid fa-delete-left"></i></a></td>
           </tr>
           {% endfor %}
 
