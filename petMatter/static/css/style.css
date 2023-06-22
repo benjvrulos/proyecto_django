@@ -431,8 +431,9 @@ table i {
   font-size: 2rem;
 }
 
-td a {
-  background-color: red;
+td a i{
+  color: red;
+  /* background-color: red; */
 }
 
 .clock {
