@@ -123,7 +123,6 @@
           </tr>
         </thead>
         <tbody>
-
           {% for p in productos %}
           <tr>
             <th scope="row"><img src="{{p.imagen.url}}" alt="" /></th>
@@ -131,11 +130,21 @@
             <td>{{p.nombre}}</td>
             <td>${{p.precio}}</td>
             <td>{{p.stock}}</td>
-            <td><i class="fa-solid fa-user-pen"></i></td>
-            <td><a class="a-eliminar" href="{% url 'eliminar-producto' p.sku %}"><i class="fa-solid fa-delete-left"></i></a></td>
+            <td>
+              <a
+                data-bs-toggle="modal"
+                data-bs-target="#editarModal"
+                data-bs-whatever="@mdo"
+                ><i id="{{p.sku}}" class="fa-solid fa-user-pen editar-icono"></i
+              ></a>
+            </td>
+            <td>
+              <a class="a-eliminar" href="{% url 'eliminar-producto' p.sku %}"
+                ><i class="fa-solid fa-delete-left"></i
+              ></a>
+            </td>
           </tr>
           {% endfor %}
-
         </tbody>
       </table>
       <div class="col text-center">
@@ -171,9 +180,13 @@
               ></button>
             </div>
             <div class="modal-body">
-
-
-              <form id="agregarProductoForm" action="{% url 'agregar-producto' %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+              <form
+                id="agregarProductoForm"
+                action="{% url 'agregar-producto' %}"
+                method="POST"
+                enctype="multipart/form-data"
+              >
+                {% csrf_token %}
                 <div class="mb-3">
                   <label for="skuProducto" class="col-form-label">Sku:</label>
                   <input
@@ -231,36 +244,46 @@
 
                 <div class="mb-3">
                   <label for="cmbCategoria">Categoria:</label>
-                  <select name="cmbCategoria" id="cmbCategoria" class="form-select" aria-label="Default select example">
-                      <option disabled selected>Seleccione</option>
-                      {% for c in categorias %}
-                      <option value="{{c.id_categoria}}">{{c.nombre_categoria}}</option>
-                      {% endfor %}
-                    </select>
+                  <select
+                    name="cmbCategoria"
+                    id="cmbCategoria"
+                    class="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option disabled selected>Seleccione</option>
+                    {% for c in categorias %}
+                    <option value="{{c.id_categoria}}">
+                      {{c.nombre_categoria}}
+                    </option>
+                    {% endfor %}
+                  </select>
                 </div>
 
                 <div class="mb-3">
                   <label for="imagenProducto" class="form-label">Imagen:</label>
-                  <input class="form-control" type="file" id="imagenProducto" name="imagenProducto">
+                  <input
+                    class="form-control"
+                    type="file"
+                    id="imagenProducto"
+                    name="imagenProducto"
+                  />
                 </div>
 
                 <button
-                type="submit"
-                class="btn btn-primary btn-dark"
-                data-bs-dismiss="modal"
-              >
-                Agregar producto
-              </button>
+                  type="submit"
+                  class="btn btn-primary btn-dark"
+                  data-bs-dismiss="modal"
+                >
+                  Agregar producto
+                </button>
 
-              <button
-
-                type="button"
-                class="btn btn-secondary btn-danger"
-                data-bs-dismiss="modal"
-              >
-                Cerrar
-              </button>
-
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-danger"
+                  data-bs-dismiss="modal"
+                >
+                  Cerrar
+                </button>
               </form>
             </div>
             <!-- <div class="modal-footer">
@@ -306,76 +329,112 @@
               ></button>
             </div>
             <div class="modal-body">
-              <form id="agregarProductoForm">
+              <form
+                id="agregarProductoForm"
+                action="{% url 'agregar-producto' %}"
+                method="POST"
+                enctype="multipart/form-data"
+              >
+                {% csrf_token %}
                 <div class="mb-3">
-                  <label for="idProducto" class="col-form-label">ID:</label>
+                  <label for="skuProductoEditar" class="col-form-label">Sku:</label>
                   <input
-                    onblur="validarForm()"
                     type="text"
                     class="form-control"
-                    id="idProducto"
+                    name="skuProductoEditar"
+                    id="skuProductoEditar"
                   />
-                  <small id="valId">Debe ingresar el id del producto</small>
                 </div>
                 <div class="mb-3">
-                  <label for="nombreProducto" class="col-form-label"
+                  <label for="nombreProductoEditar" class="col-form-label"
                     >Nombre:</label
                   >
                   <input
-                    onblur="validarForm()"
                     type="text"
                     class="form-control"
-                    id="nombreProducto"
+                    name="nombreProductoEditar"
+                    id="nombreProductoEditar"
                   />
-                  <small id="valNombre"
-                    >Debe ingresar el nombre del producto</small
-                  >
                 </div>
                 <div class="mb-3">
-                  <label for="precioProducto" class="col-form-label"
+                  <label for="precioProductoEditar" class="col-form-label"
                     >Precio:</label
                   >
                   <input
-                    onblur="validarForm()"
                     type="text"
                     class="form-control"
-                    id="precioProducto"
+                    id="precioProductoEditar"
+                    name="precioProductoEditar"
                   />
-                  <small id="valPrecio"
-                    >Debe ingresar el precio del producto</small
+                </div>
+                <div class="mb-3">
+                  <label for="stockProductoEditar" class="col-form-label"
+                    >Stock:</label
                   >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="stockProductoEditar"
+                    name="stockProductoEditar"
+                  />
                 </div>
 
                 <div class="mb-3">
-                  <label class="input-text" for="fotoProducto"
-                    >Url Imagen:
-                  </label>
+                  <label for="descripcionProductoEditar" class="col-form-label"
+                    >Descripcion:</label
+                  >
                   <input
-                    onblur="validarForm()"
                     type="text"
                     class="form-control"
-                    id="fotoProducto"
+                    id="descripcionProductoEditar"
+                    name="descripcionProductoEditar"
                   />
-                  <small id="valFoto">Debe ingresar la url del producto</small>
                 </div>
+
+                <div class="mb-3">
+                  <label for="cmbCategoria">Categoria:</label>
+                  <select
+                    name="cmbCategoria"
+                    id="cmbCategoria"
+                    class="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option disabled selected>Seleccione</option>
+                    {% for c in categorias %}
+                    <option class="categoriaProductoEditar" id="{{c.id_categoria}}" value="{{c.id_categoria}}">
+                      {{c.nombre_categoria}}
+                    </option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <label for="imagenProductoEditar" class="form-label">Imagen:</label>
+                  <img id="imagenProductoEditarMostrar" src="" alt="" width="60px" srcset="">
+                  <input
+                    class="form-control"
+                    type="file"
+                    id="imagenProductoEditar"
+                    name="imagenProductoEditar"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-dark"
+                  data-bs-dismiss="modal"
+                >
+                  Editar producto
+                </button>
+
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-danger"
+                  data-bs-dismiss="modal"
+                >
+                  Cerrar
+                </button>
               </form>
-            </div>
-            <div class="modal-footer">
-              <button
-                onclick="limpiarForm()"
-                type="button"
-                class="btn btn-secondary btn-danger"
-                data-bs-dismiss="modal"
-              >
-                Cerrar
-              </button>
-              <button
-                onclick="agregarProducto()"
-                type="button"
-                class="btn btn-primary btn-dark"
-              >
-                Agregar producto
-              </button>
             </div>
           </div>
         </div>
@@ -392,9 +451,48 @@
       integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
       crossorigin="anonymous"
     ></script>
+
+    <script src="{% static 'js/jquery-3.7.0.min.js' %}"></script>
     <script src="{% static 'js/formulario.js' %}"></script>
     <!-- <script src="{% static 'js/storage.js' %}"></script> -->
     <script src="{% static 'js/reloj.js' %}"></script>
     <script src="{% static 'js/api.js' %}"></script>
+
+    <script>
+      const iconosEditar = document.querySelectorAll(".editar-icono");
+      for (const icono of iconosEditar) {
+        icono.addEventListener("click", function (event) {
+          event.preventDefault();
+          fetch('{%  url "editar-producto-ajax" %}', {
+            method: "POST",
+            credentials: "same-origin",
+            headers: {
+              Accept: "application/json",
+              "X-Requested-With": "XMLHttpRequest", //Necessary to work with request.is_ajax()
+              "X-CSRFToken": '{{csrf_token}}',
+            },
+            body: JSON.stringify({ 'skuProducto': event.target.id ,'imagenUrl':null}), //JavaScript object of data to POST
+          })
+            .then((response) => {
+              return response.json(); //Convert response to JSON
+            })
+            .then((data) => {
+              console.log(data);
+              document.getElementById("skuProductoEditar").value = data[0]['sku'];
+              document.getElementById("nombreProductoEditar").value = data[0]['nombre'];
+              document.getElementById("precioProductoEditar").value = data[0]['precio'];
+              document.getElementById("stockProductoEditar").value = data[0]['stock'];
+              document.getElementById("descripcionProductoEditar").value = data[0]['descripcion'];
+              document.getElementById(data[0]['id_categoria_id']).selected = true;
+              const urlIncompleta = data[0]['imagen']
+              const urlCompleta = '/media/'+ urlIncompleta
+              document.getElementById("imagenProductoEditarMostrar").src = urlCompleta;
+              //document.getElementById("imagenProductoEditar").value = url.split('/')[1]
+              //document.getElementById("imagenProductoEditar").value = data[0]['imagen'];
+                
+            });
+        });
+      }
+    </script>
   </body>
 </html>

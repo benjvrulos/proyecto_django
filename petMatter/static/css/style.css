@@ -436,6 +436,10 @@ td a i{
   /* background-color: red; */
 }
 
+.editar-icono {
+  color: #000!important;
+}
+
 .clock {
   position: absolute;
   top: 50%;

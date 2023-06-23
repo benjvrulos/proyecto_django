@@ -2,6 +2,9 @@ from django.shortcuts import render,reverse,redirect
 from .models import Producto,Categoria
 import os
 from django.conf import settings
+from django.http import JsonResponse
+from django.core import serializers
+import json
 
 def index(request):
     return render(request,'Tienda/index.html')
@@ -10,6 +13,7 @@ def mantenedor(request):
     categorias = Categoria.objects.all()
     productos = Producto.objects.all()
     return render(request,'Tienda/mantenedor.html',{'productos':productos,'categorias':categorias})
+
 
 def agregarProducto(request):
     v_sku = request.POST['skuProducto']
@@ -30,3 +34,8 @@ def eliminarProducto(request,sku):
     os.remove(ruta_imagen)
     producto.delete()
     return redirect('mantenedor')
+
+def ajax_post_view(request):
+    sku = json.load(request)['skuProducto']
+    data = list(Producto.objects.filter(sku=sku).values())
+    return JsonResponse(data,safe=False)
