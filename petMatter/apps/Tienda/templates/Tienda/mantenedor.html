@@ -261,10 +261,13 @@
 
                 <div class="mb-3">
                   <label for="imagenProducto" class="form-label">Imagen:</label>
+                  <div class="mb-12" style="margin-bottom : 15px;">
+                    <img src="" id="imagenProductoAgregarMostrar" width="100px" alt="">
+                  </div>
                   <input
                     class="form-control"
                     type="file"
-                    id="imagenProducto"
+                    id="imagenProductoAgregar"
                     name="imagenProducto"
                   />
                 </div>
@@ -286,23 +289,6 @@
                 </button>
               </form>
             </div>
-            <!-- <div class="modal-footer">
-              <button
-                onclick="limpiarForm()"
-                type="button"
-                class="btn btn-secondary btn-danger"
-                data-bs-dismiss="modal"
-              >
-                Cerrar
-              </button>
-              <button
-                type="submit"
-                class="btn btn-primary btn-dark"
-                data-bs-dismiss="modal"
-              >
-                Agregar producto
-              </button>
-            </div> -->
           </div>
         </div>
       </div>
@@ -410,7 +396,9 @@
 
                 <div class="mb-3">
                   <label for="imagenProductoEditar" class="form-label">Imagen:</label>
-                  <img id="imagenProductoEditarMostrar" src="" alt="" width="60px" srcset="">
+                  <div class="mb-12" style="margin-bottom : 15px;">
+                    <img src="" id="imagenProductoEditarMostrar" width="100px" alt="">
+                  </div>
                   <input
                     class="form-control"
                     type="file"
@@ -457,6 +445,7 @@
     <!-- <script src="{% static 'js/storage.js' %}"></script> -->
     <script src="{% static 'js/reloj.js' %}"></script>
     <script src="{% static 'js/api.js' %}"></script>
+    <script src="{% static 'js/display-images.js' %}"></script>
 
     <script>
       const iconosEditar = document.querySelectorAll(".editar-icono");
@@ -477,7 +466,6 @@
               return response.json(); //Convert response to JSON
             })
             .then((data) => {
-              console.log(data);
               document.getElementById("skuProductoEditar").value = data[0]['sku'];
               document.getElementById("nombreProductoEditar").value = data[0]['nombre'];
               document.getElementById("precioProductoEditar").value = data[0]['precio'];
