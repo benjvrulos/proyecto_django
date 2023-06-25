@@ -1,0 +1,1 @@
+let btnCarrito = document.getElementById("btnCarrito");
