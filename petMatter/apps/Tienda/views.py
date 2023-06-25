@@ -28,6 +28,34 @@ def agregarProducto(request):
 
     return redirect('mantenedor')
 
+
+def editarProducto(request):
+    v_sku = request.POST['skuProductoEditar']
+    producto = Producto.objects.get(sku=v_sku)
+    v_nombre = request.POST['nombreProductoEditar']
+    v_stock = request.POST['stockProductoEditar']
+    v_precio = request.POST['precioProductoEditar']
+    v_descripcion = request.POST['descripcionProductoEditar']
+    v_categoria = Categoria.objects.get(id_categoria = request.POST['cmbCategoriaEditar'])
+
+    try:
+        v_img = request.FILES['imagenProductoEditar']
+        ruta_imagen = os.path.join(settings.MEDIA_ROOT, str(producto.imagen))
+        os.remove(ruta_imagen)
+    except:
+        v_img = producto.imagen
+    
+    producto.nombre = v_nombre
+    producto.stock = v_stock
+    producto.precio = v_precio
+    producto.descripcion = v_descripcion
+    producto.imagen = v_img
+    producto.id_categoria = v_categoria
+
+    producto.save()
+    return redirect('mantenedor')
+
+
 def eliminarProducto(request,sku):
     producto = Producto.objects.get(sku = sku)
     ruta_imagen = os.path.join(settings.MEDIA_ROOT, str(producto.imagen))

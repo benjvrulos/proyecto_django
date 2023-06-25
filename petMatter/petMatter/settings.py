@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     ## TIENDA APP
     'apps.Tienda',
+    ## ApiRest APP
+    'apps.apiRest',
 ]
 
 MIDDLEWARE = [

@@ -317,7 +317,7 @@
             <div class="modal-body">
               <form
                 id="agregarProductoForm"
-                action="{% url 'agregar-producto' %}"
+                action="{% url 'editar-producto' %}"
                 method="POST"
                 enctype="multipart/form-data"
               >
@@ -378,10 +378,10 @@
                 </div>
 
                 <div class="mb-3">
-                  <label for="cmbCategoria">Categoria:</label>
+                  <label for="cmbCategoriaEditar">Categoria:</label>
                   <select
-                    name="cmbCategoria"
-                    id="cmbCategoria"
+                    name="cmbCategoriaEditar"
+                    id="cmbCategoriaEditar"
                     class="form-select"
                     aria-label="Default select example"
                   >
