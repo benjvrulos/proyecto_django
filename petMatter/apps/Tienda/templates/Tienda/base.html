@@ -63,13 +63,30 @@
                 >Contáctanos</a
               >
             </li>
+            {% if user.is_superuser %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'mantenedor' %}" tabindex="-1" aria-disabled="true"
+                >Mantenedor</a
+              >
+            </li>
+            {% endif %}
+
           </ul>
           <input id="checkitem" type="checkbox" onclick="enableDarkMode()">
           
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="#" tabindex="-1" aria-disabled="true"
+              >Bienvenido {{user.username}}</a
+            >
+          </li>
+          {% else %}
           <form class="d-flex">
             <button class="btn btn-outline-success" type="submit">
               Registrarse
             </button>
+          {% endif %}
+          
           </form>
         </div>
       </div>
