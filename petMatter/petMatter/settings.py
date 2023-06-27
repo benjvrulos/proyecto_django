@@ -37,10 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    ## TIENDA APP
+    ## Tienda APP
     'apps.Tienda',
     ## ApiRest APP
     'apps.apiRest',
+    ## User Authentications APP
+    'userAuths',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +133,6 @@ MEDIA_ROOT = BASE_DIR / 'static/media'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+## Modelo de Usuarios
+AUTH_USER_MODEL =   'userAuths.User'
