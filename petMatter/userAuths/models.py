@@ -11,7 +11,7 @@ class User(AbstractUser):
     is_superuser = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['rut','username','nombres','apellidos']
+    REQUIRED_FIELDS = ['rut','username','nombres','apellidos','fechaNacimiento']
 
     def __str__(self):
         return self.username
