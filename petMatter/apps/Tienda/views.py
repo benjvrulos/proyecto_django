@@ -7,7 +7,7 @@ from django.core import serializers
 import json
 
 def index(request):
-    return render(request,'Tienda/index.html')
+    return render(request,'Tienda/index-2.html')
 
 def mantenedor(request):
     categorias = Categoria.objects.all()
