@@ -4,16 +4,21 @@ import os
 from django.conf import settings
 from django.http import JsonResponse
 from django.core import serializers
+from django.http import HttpResponseNotAllowed
 import json
+from django.contrib.auth.decorators import login_required, permission_required,user_passes_test
 
 def index(request):
     return render(request,'Tienda/index-2.html')
 
+@user_passes_test(lambda u: u.is_superuser)
 def mantenedor(request):
     categorias = Categoria.objects.all()
     productos = Producto.objects.all()
     return render(request,'Tienda/mantenedor.html',{'productos':productos,'categorias':categorias})
 
+def productoView(request):
+    return render(request,'Tienda/producto.html')
 
 def agregarProducto(request):
     v_sku = request.POST['skuProducto']

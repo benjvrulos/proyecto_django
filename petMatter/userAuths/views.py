@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,reverse
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from userAuths.models import User
@@ -25,7 +25,7 @@ def RegisterView(request):
 
     return render(request,'userAuths/register.html')
 
-def LoginView(request):
+def loginView(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
@@ -41,3 +41,7 @@ def LoginView(request):
                 return redirect("userauths:sign-in")
 
     return render(request,'userAuths/login.html')
+
+def logoutView(request):
+    logout(request)
+    return redirect(reverse('apps.Tienda:home'))

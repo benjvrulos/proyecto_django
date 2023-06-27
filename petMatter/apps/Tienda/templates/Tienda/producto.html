@@ -1,0 +1,105 @@
+{% extends "./base-2.html" %} {% load static %} {% block body %}
+<section class="productos" id="productos">
+  <div class="content">
+    <h1>Productos Mascotas</h1>
+  </div>
+</section>
+
+<!-- CONTENIDO -->
+<section class="contenedor">
+  <div class="contenedor-items">
+    <div class="item">
+      <span class="titulo-item">Comida para Perro</span>
+      <img src="{% static 'img/comida-perro.jpg' %}" alt="" class="img-item" />
+      <span class="precio-item">$15.000</span>
+      <button class="boton-item">Agregar al Carrito</button>
+    </div>
+    <div class="item">
+      <span class="titulo-item">Comida para Gato</span>
+      <img src="{% static 'img/comida-gato.jpg' %}" alt="" class="img-item" />
+      <span class="precio-item">$15.000</span>
+      <button class="boton-item">Agregar al Carrito</button>
+    </div>
+    <div class="item">
+      <span class="titulo-item">Cama para Mascota</span>
+      <img src="{% static 'img/cama-mascota.jpg' %}" alt="" class="img-item" />
+      <span class="precio-item">$20.000</span>
+      <button class="boton-item">Agregar al Carrito</button>
+    </div>
+    <div class="item">
+      <span class="titulo-item">Correa para Macota</span>
+      <img src="{% static 'img/correa-perro.jpg' %}" alt="" class="img-item" />
+      <span class="precio-item">$15.000</span>
+      <button class="boton-item">Agregar al Carrito</button>
+    </div>
+    <div class="item">
+      <span class="titulo-item">Juguete para Perro</span>
+      <img src="{% static 'img/juguete-perro.jpg' %}" alt="" class="img-item" />
+      <span class="precio-item">$20.000</span>
+      <button class="boton-item">Agregar al Carrito</button>
+    </div>
+    <div class="item">
+      <span class="titulo-item">Plato Metalico</span>
+      <img
+        src="{% static 'img/plato-metalico.jpg' %}"
+        alt=""
+        class="img-item"
+      />
+      <span class="precio-item">$20.000</span>
+      <button class="boton-item">Agregar al Carrito</button>
+    </div>
+  </div>
+
+  <div class="carrito" id="carrito">
+    <div class="header-carrito">
+      <h2>Producto</h2>
+    </div>
+
+    <div class="carrito-items">
+      <!-- <div class="carrito-item">
+            <img src="img/comida-perro.jpg" alt="" width="80px">
+            <div class="carrito-item-detalles">
+              <span class="carrito-item-titulo">Comida para Perro</span>
+              <div class="selector-cantidad">
+                <i class="fa-solid fa-minus restar-cantidad"></i>     
+                <input type="text" value="1" class="carrito-item-cantidad" disabled>
+                <i class="fa-solid fa-plus"></i>
+              </div>
+              <span class="carrito-item-precio">$15.000</span>
+            </div>
+            <span class="btn-eliminar">
+              <i class="fa-solid fa-trash"></i>
+            </span>
+          </div>
+
+          <div class="carrito-item">
+            <img src="img/comida-gato.jpg" alt="" width="80px">
+            <div class="carrito-item-detalles">
+              <span class="carrito-item-titulo">Comida para Gato</span>
+              <div class="selector-cantidad">
+                <i class="fa-solid fa-minus restar-cantidad"></i>     
+                <input type="text" value="2" class="carrito-item-cantidad" disabled>
+                <i class="fa-solid fa-plus"></i>
+              </div>
+              <span class="carrito-item-precio">$15.000</span>
+            </div>
+            <button class="btn-eliminar">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div> -->
+    </div>
+    <div class="carrito-total">
+      <div class="fila">
+        <strong>Tu total:</strong>
+        <span class="carrito-precio-total"> $0 </span>
+      </div>
+      <button class="btn-pagar">
+        Pagar <i class="fa-solid fa-bag-shopping"></i>
+      </button>
+    </div>
+  </div>
+</section>
+
+{% endblock body %} {% block script %}
+<script src="{% static 'js/app.js' %}"></script>
+{% endblock script %}
