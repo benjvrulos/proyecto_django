@@ -21,7 +21,8 @@ def realizarCompra(request):
 
         if(producto.stock < 0):
             messages.error(request,f"Su compra supera el stock disponible") 
-            return redirect('home')
+            print("aki tamos xd")
+            return JsonResponse([],safe=False)
         
         producto.save()
         subcompra = SubCompra.objects.create(compra=compra,producto=producto,cantidad= cantidad,subtotal=subtotal)

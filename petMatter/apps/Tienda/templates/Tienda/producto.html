@@ -95,8 +95,14 @@
       body: storage, //JavaScript object of data to POST
     }).then((response) =>{ return response.json()})
       .then((data)=> {
-        const idCompra = data[0]['idCompra'];
-        window.location.href = "/compra/"+idCompra;
+
+        if(data){
+          window.location.href = "/productos/";
+        }
+        else{
+          const idCompra = data[0]['idCompra'];
+          window.location.href = "/compra/"+idCompra;
+        }
 
       });
   })
