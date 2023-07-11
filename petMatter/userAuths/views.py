@@ -38,15 +38,15 @@ def loginView(request):
         user = authenticate(request,username=username,password=password)
         if user is not None: #if there is a user
             login(request,user)
-            messages.success(request,"You are logged.")
+            messages.success(request,"Has ingresado exitosamente.")
             return redirect("home")
         else:
-            print("Usuario o contraseña incorrecta")
-            # messages.warning(request,"Usuario o contraseña incorrecta")
+            messages.warning(request,"Usuario o contraseña incorrecta")
             return redirect("login")
 
     return render(request,'userAuths/login.html')
 
 def logoutView(request):
     logout(request)
+    messages.success(request,"Te has salido exitosamente.")
     return redirect(reverse('home'))
