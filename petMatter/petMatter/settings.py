@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 from django.contrib.messages import constants as messages
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -150,3 +151,8 @@ MESSAGE_TAGS = {
         messages.ERROR: 'alert-danger',
  }
 
+
+## Redireccionar a login
+
+LOGIN_URL = reverse_lazy('login')
+LOGIN_REDIRECT_URL = '/'

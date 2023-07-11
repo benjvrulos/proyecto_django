@@ -17,12 +17,14 @@ def mantenedor(request):
     productos = Producto.objects.all()
     return render(request,'Tienda/mantenedor.html',{'productos':productos,'categorias':categorias})
 
+@login_required
 def productoView(request):
     productos = Producto.objects.all()
     productos = Producto.objects.filter(stock__gt=0)
 
     return render(request,'Tienda/producto.html',{'productos':productos})
 
+@user_passes_test(lambda u: u.is_superuser)
 def agregarProducto(request):
     v_sku = request.POST['skuProducto']
     v_nombre = request.POST['nombreProducto']
@@ -36,7 +38,7 @@ def agregarProducto(request):
 
     return redirect('mantenedor')
 
-
+@user_passes_test(lambda u: u.is_superuser)
 def editarProducto(request):
     v_sku = request.POST['skuProductoEditar']
     producto = Producto.objects.get(sku=v_sku)
@@ -63,7 +65,7 @@ def editarProducto(request):
     producto.save()
     return redirect('mantenedor')
 
-
+@user_passes_test(lambda u: u.is_superuser)
 def eliminarProducto(request,sku):
     producto = Producto.objects.get(sku = sku)
     ruta_imagen = os.path.join(settings.MEDIA_ROOT, str(producto.imagen))
@@ -71,6 +73,7 @@ def eliminarProducto(request,sku):
     producto.delete()
     return redirect('mantenedor')
 
+@user_passes_test(lambda u: u.is_superuser)
 def ajax_post_view(request):
     sku = json.load(request)['skuProducto']
     data = list(Producto.objects.filter(sku=sku).values())
