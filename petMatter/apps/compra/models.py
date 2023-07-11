@@ -7,10 +7,10 @@ class Compra(models.Model):
     idCompra = models.UUIDField(primary_key=True,unique=True,default=uuid.uuid4,editable=False)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     productos = models.ManyToManyField(Producto,through='SubCompra')
-    total = models.IntegerField()
+    total = models.IntegerField(default=0)
 
     def __str__(self):
-        return f"ID COMPRA: {self.idCompra}  USUARIO RUT:{self.user.rut} TOTAL:{self.total}" 
+        return str(self.idCompra) 
 
 class SubCompra(models.Model):
     compra = models.ForeignKey(Compra,on_delete=models.CASCADE)

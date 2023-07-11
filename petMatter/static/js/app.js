@@ -98,6 +98,8 @@ function agregarAlCarritoClicked(event) {
   var item = button.parentElement;
   var titulo = item.getElementsByClassName("titulo-item")[0].innerText;
   var precio = item.getElementsByClassName("precio-item")[0].innerText;
+  var precioNumber = Number(precio.slice(1));
+  console.log(precioNumber);
   var imagenSrc = item.getElementsByClassName("img-item")[0].src;
   var sku = item.getElementsByClassName("skuProductoEscondido")[0].innerText;
   agregarItemAlCarrito(titulo, precio, imagenSrc);

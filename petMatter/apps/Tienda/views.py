@@ -19,6 +19,8 @@ def mantenedor(request):
 
 def productoView(request):
     productos = Producto.objects.all()
+    productos = Producto.objects.filter(stock__gt=0)
+
     return render(request,'Tienda/producto.html',{'productos':productos})
 
 def agregarProducto(request):
