@@ -671,3 +671,69 @@ form .button input {
     width: 0;
   }
 }
+
+/* --------------------------------------------------------------------------------------------------------------- */
+
+/* Detalle producto */
+
+#h1-detalle-compra {
+  text-align: center;
+  color: #333;
+}
+
+#table-detalle-producto {
+  border-collapse: collapse;
+  width: 50%;
+  height: 500px;
+  margin: 0 auto;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+#id-compra, #total {
+  font-weight: bold;
+}
+
+.detalle-productos {
+  margin: 20px 0;
+  padding-left: 20px;
+}
+
+.detalle-productos ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.detalle-productos li {
+  margin-bottom: 10px;
+}
+
+.producto-detalle-nombre {
+  font-weight: bold;
+}
+
+.producto-detalle {
+  color: #777;
+  font-style: italic;
+  margin-left: 10px;
+}
+
+.mensaje-agradecimiento {
+  text-align: center;
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* --------------------------------------------------------------------------------------------------------------- */

@@ -1,7 +1,4 @@
-{% extends "./base-2.html" %} {% load static %} {% block body %}
-
-
-
+{% extends "../Tienda/base-2.html" %} {% load static %} {% block body %}
 
 <section class="productos" id="productos">
   <div class="content">
@@ -96,11 +93,13 @@
     }).then((response) =>{ return response.json()})
       .then((data)=> {
 
-        if(data){
+        if(data === []){
           window.location.href = "/productos/";
         }
         else{
+          localStorage.removeItem("myStorage");
           const idCompra = data[0]['idCompra'];
+          console.log(idCompra);
           window.location.href = "/compra/"+idCompra;
         }
 

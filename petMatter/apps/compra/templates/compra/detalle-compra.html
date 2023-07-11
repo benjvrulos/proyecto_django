@@ -1,0 +1,48 @@
+{% extends "Tienda/base-2.html" %} {% load static %} {% block body %}
+  <br>
+  <br>
+  <br>
+  <h1 id="h1-detalle-compra">Detalles de la compra</h1>
+    <table id="table-detalle-producto">
+        <tr>
+            <th>ID de compra:</th>
+            <td id="id-compra-producto">{{compra.idCompra}}</td>
+        </tr>
+        <tr>
+            <th>Productos:</th>
+            <td>
+                <div class="detalle-productos">
+                    <ul>
+
+                        
+                        {% for sub in subcompras %}
+                        <li>
+                            <span class="producto-detalle-nombre">{{sub.producto.nombre}}</span>
+                            <span class="producto-detalle">-{{sub.cantidad}} unidades</span>
+                            <img src="{{sub.producto.imagen.url}}" alt="" style="display:block">
+                        </li>
+                            
+                        {% endfor %}
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th>Total:</th>
+            <td id="total">${{compra.total}}</td>
+        </tr>
+    </table>
+    <div class="mensaje-agradecimiento">
+        ¡Gracias por tu compra!
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <!----------------------------------------------------------------->
+
+
+    {% endblock body %} 

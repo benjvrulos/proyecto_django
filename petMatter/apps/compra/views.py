@@ -38,5 +38,5 @@ def realizarCompra(request):
 
 def compraExitosa(request, idCompra):
     compra = Compra.objects.get(idCompra=idCompra)
-    print(compra)
-    return render(request,'compra/compra.html',{'compra':compra})
+    subcompras = SubCompra.objects.filter(compra_id=idCompra)
+    return render(request,'compra/detalle-compra.html',{'compra':compra,'subcompras':subcompras})
