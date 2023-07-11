@@ -71,7 +71,7 @@
 
     {% if messages %}
     {% for message in messages %}
-      <div class="alert {{message.tags}} alert-dismissible fade show mb-0" role="alert">
+      <div class="alert {{message.tags}} alert-dismissible fade show mb-0" id="mensaje" role="alert">
         {{message}}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
@@ -248,6 +248,7 @@
     </footer>
 
     <!-- FIN FOOTER -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
@@ -259,6 +260,9 @@
       integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
       crossorigin="anonymous"
     ></script>
+    <script>
+      setInterval(function(){ $("#mensaje").fadeOut(); }, 3000);
+    </script>
 
   </body>
 </html>

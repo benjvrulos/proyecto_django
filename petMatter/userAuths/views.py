@@ -41,7 +41,7 @@ def loginView(request):
             messages.success(request,"Has ingresado exitosamente.")
             return redirect("home")
         else:
-            messages.warning(request,"Usuario o contraseña incorrecta")
+            messages.error(request,"Usuario o contraseña incorrecta")
             return redirect("login")
 
     return render(request,'userAuths/login.html')
