@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from userAuths.managers import CustomUserManager
 
 class User(AbstractUser):
     email = models.EmailField(unique=True)
@@ -10,8 +11,8 @@ class User(AbstractUser):
     fechaNacimiento = models.DateField()
     is_superuser = models.BooleanField(default=False)
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['rut','username','nombres','apellidos','fechaNacimiento']
+    REQUIRED_FIELDS = ['rut','email','nombres','apellidos','fechaNacimiento']
+    # objects = CustomUserManager()
 
     def __str__(self):
         return self.username

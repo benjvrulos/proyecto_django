@@ -1,4 +1,4 @@
-<h1>Login</h1>
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -11,7 +11,7 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
@@ -23,20 +23,6 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
       rel="stylesheet"
     />
-
-    <link
-      href="fontawesome-free-6.3.0-web/fontawesome-free-6.3.0-web/css/fontawesome.css"
-      rel="stylesheet"
-    />
-    <link
-      href="fontawesome-free-6.3.0-web/fontawesome-free-6.3.0-web/css/brands.css"
-      rel="stylesheet"
-    />
-    <link
-      href="fontawesome-free-6.3.0-web/fontawesome-free-6.3.0-web/css/solid.css"
-      rel="stylesheet"
-    />
-
     <title>Login</title>
   </head>
   <body id="login">
@@ -76,9 +62,8 @@
             </li>
           </ul>
           <form class="d-flex">
-            <button class="btn btn-outline-success" type="submit">
-              Registrarse
-            </button>
+            <a href="{% url 'login' %}" class="btn btn-outline-success">Ingresar</a>
+            <a href="{% url 'register' %}" class="btn btn-outline-success ms-2">Registrarse</a>
           </form>
         </div>
       </div>
@@ -89,25 +74,28 @@
     <!-- CONTENEDOR LOGIN -->
 
     <div class="contenedor-login">
+      <form action="{% url 'login' %}" method="POST"
+      enctype="multipart/form-data"> {% csrf_token %}
       <section class="form-login" id="form-login">
         <h5>Iniciar Sesión</h5>
         <input
           class="controls"
           type="text"
-          name="txtUsuario"
+          name="usernameUsuario"
           value=""
           placeholder="Usuario"
         />
         <input
           class="controls"
           type="password"
-          name="txtContrasena"
+          name="passwordUsuario"
           value=""
           placeholder="Contraseña"
         />
         <input class="buttons" type="submit" value="Ingresar" />
         <p><a href="#"> ¿Olvidaste tu Contraseña? </a></p>
       </section>
+    </form>
     </div>
 
     <!-- FIN CONTENEDOR LOGIN-->

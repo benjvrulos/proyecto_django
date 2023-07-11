@@ -75,27 +75,48 @@
 
           
           {% if user.is_authenticated %}
-          <li class="nav-item">
+         
+          <form class="d-flex">
             <a class="nav-link" href="#" tabindex="-1" aria-disabled="true"
               >Bienvenido {{user.username}}</a
             >
-          </li>
+            <a href="{% url 'logout' %}" class="btn btn-danger ms-2">Salir</a>
+          </form>
           {% else %}
           <form class="d-flex">
-            <button class="btn btn-outline-success" type="submit">
-              Registrarse
-            </button>
+              <a href="{% url 'login' %}" class="btn btn-outline-success">Ingresar</a>
+              <a href="{% url 'register' %}" class="btn btn-outline-success ms-2">Registrarse</a>
+
           </form>
-          {% endif %}
           
+          {% endif %}
+
+          
+          {% if messages %}            
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          {% endif %}
+
         </div>
       </div>
     </nav>
 
+{% if messages %}
+  {% for message in messages %}
+    <div class="container-fluid p-0">
+      <div class="alert {{message.tags}} alert-dismissible fade show" role="alert">
+        {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    </div>
+  {% endfor %}
+{% endif %}
+
     {% block body %}   
-    {% endblock %}     
+    {% endblock body %}     
   
-    </section>
           <!-- Remove the container if you want to extend the Footer to full width. -->
 
   <!-- Footer -->
@@ -240,7 +261,6 @@
   </footer>
   <!-- Footer -->
 
-</div>
 <!-- End of .container -->
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"

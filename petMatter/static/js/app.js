@@ -140,7 +140,6 @@ function hacerVisibleCarrito() {
 
 //funcion que agrega un item al carrito
 function agregarItemAlCarrito(titulo, precio, imagenSrc, cantidad = 1) {
-  console.log("Desde", precio.slice(1, 7));
   var item = document.createElement("div");
   item.classList.add = "item";
   var itemsCarrito = document.getElementsByClassName("carrito-items")[0];

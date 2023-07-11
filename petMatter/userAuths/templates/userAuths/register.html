@@ -1,0 +1,54 @@
+{% extends "../Tienda/base-2.html" %} 
+{% load static %} 
+{% block body %}
+    <!-- CONTENEDOR FORMULARIO -->
+    <div class="body-formulario-venta">
+    <div class="container-formulario" id="venta">
+      <div class="title">Registrar Usuario</div>
+        <form action="{% url 'register' %}" method="POST"
+        enctype="multipart/form-data">{% csrf_token %}
+              <div class="user-details">
+                <div class="input-box">
+                  <span class="details">Nombre de Usuario</span>
+                  <input type="text" placeholder="Ingresa tu nombre de usuario" name="usernameUsuario">
+                </div>
+                <div class="input-box">
+                  <span class="details">Correo Electronico</span>
+                  <input type="text" placeholder="Ingresa tu correo" name="emailUsuario">
+                </div>
+                <div class="input-box">
+                  <span class="details">Nombre</span>
+                  <input type="text" placeholder="Ingresa tu nombre" name="nombreUsuario">
+                </div>
+                <div class="input-box">
+                  <span class="details">Apellidos</span>
+                  <input type="text" placeholder="Ingresa tus Apellidos" name="apellidosUsuario">
+                </div>
+                <div class="input-box">
+                  <span class="details">Rut</span>
+                  <input type="text" placeholder="Ingresa tu Rut" name="rutUsuario">
+                </div>
+
+                <div class="input-box">
+                  <span class="details">Fecha de nacimiento</span>
+                  <input type="date" placeholder="dd/mm/yyyy" name="fechaNacimientoUsuario">
+                </div>
+
+                <div class="input-box">
+                  <span class="details">Contraseña</span>
+                  <input type="password" placeholder="*************" name="passwordUsuario">
+                </div>
+                <!-- <div class="input-box">
+                  <span class="details">Número Telefonico</span>
+                  <input type="text" placeholder="+569" name="telefonoUsuario">
+                </div> -->
+              </div>
+              <div class="button">
+                <input type="submit" value="Aceptar">
+              </div>
+          </form>
+    </div>
+    </div>
+{% endblock body %}
+
+{% block script %} {% endblock script %}
