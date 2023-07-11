@@ -1,4 +1,8 @@
 {% extends "./base-2.html" %} {% load static %} {% block body %}
+
+
+
+
 <section class="productos" id="productos">
   <div class="content">
     <h1>Productos Mascotas</h1>
@@ -67,7 +71,7 @@
         <span class="carrito-precio-total"> $0 </span>
       </div>
       <button class="btn-pagar">
-        <a href="{%  url 'compra' %}">Pagar</a> <i class="fa-solid fa-bag-shopping"></i>
+        Pagar<i class="fa-solid fa-bag-shopping"></i>
       </button>
     </div>
   </div>
@@ -80,8 +84,6 @@
   btnPagar.addEventListener('click',function(event){
     event.preventDefault();
     const storage = localStorage.getItem("myStorage")
-
-    console.log(storage);
     fetch('{%  url "compra" %}', {
       method: "POST",
       credentials: "same-origin",
@@ -91,7 +93,12 @@
         "X-CSRFToken": '{{csrf_token}}',
       },
       body: storage, //JavaScript object of data to POST
-    });
+    }).then((response) =>{ return response.json()})
+      .then((data)=> {
+        const idCompra = data[0]['idCompra'];
+        window.location.href = "/compra/"+idCompra;
+
+      });
   })
 </script>
 {% endblock script %}

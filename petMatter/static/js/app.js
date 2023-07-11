@@ -49,7 +49,6 @@ function ready() {
 
 //se eliminan todos los elementos del carrito y se oculta automaticamente
 function pagarClicked() {
-  alert("Gracias por la compra");
   //Elimino todos los elmentos del carrito
   var carritoItems = document.getElementsByClassName("carrito-items")[0];
   while (carritoItems.hasChildNodes()) {

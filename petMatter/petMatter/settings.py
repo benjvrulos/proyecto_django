@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'userAuths',
     ## Compra APP
     'apps.compra',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

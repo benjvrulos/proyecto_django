@@ -1,8 +1,9 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from .models import Compra,SubCompra
-from userAuths.models import User
+from django.shortcuts import render,redirect
+from django.urls import reverse,reverse_lazy
+from .models import Compra,SubCompra,UUIDEncoder
 from apps.Tienda.models import Producto
+from django.http import JsonResponse
+from django.contrib import messages
 
 import json
 
@@ -16,21 +17,25 @@ def realizarCompra(request):
         precio = producto.precio
         cantidad = p['cantidad']
         subtotal = precio * cantidad
-        print("Producto:",producto.nombre)
-        print("Stock inicial:" , producto.stock)
-        print("Precio: ", precio)
-        print("Cantidad: ",p['cantidad'])
         producto.stock -= cantidad
+
+        if(producto.stock < 0):
+            messages.error(request,f"Su compra supera el stock disponible") 
+            return redirect('home')
+        
         producto.save()
-        print("Stock final: " , producto.stock)
-        print("Subtotal: ", subtotal)
         subcompra = SubCompra.objects.create(compra=compra,producto=producto,cantidad= cantidad,subtotal=subtotal)
         total += subtotal
 
 
-    print("Total de la compra: ", total)
     compra.total = total
     compra.save()
+    data = []
+    data.append({'idCompra':str(compra.idCompra)})
+    print(data)
+    return JsonResponse(data,safe=False)
 
-
-    return HttpResponse("Compra Exitosa")
+def compraExitosa(request, idCompra):
+    compra = Compra.objects.get(idCompra=idCompra)
+    print(compra)
+    return render(request,'compra/compra.html',{'compra':compra})

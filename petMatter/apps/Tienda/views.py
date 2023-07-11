@@ -77,4 +77,5 @@ def eliminarProducto(request,sku):
 def ajax_post_view(request):
     sku = json.load(request)['skuProducto']
     data = list(Producto.objects.filter(sku=sku).values())
+    print(data)
     return JsonResponse(data,safe=False)
