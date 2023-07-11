@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('apps.Tienda.urls')),
     path('apiRest',include('apps.apiRest.urls')),
     path('users/',include('userAuths.urls')),
+    path('compra/',include('apps.compra.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,document_root= settings.MEDIA_ROOT)

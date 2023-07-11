@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'apps.apiRest',
     ## User Authentications APP
     'userAuths',
+    ## Compra APP
+    'apps.compra',
 ]
 
 MIDDLEWARE = [

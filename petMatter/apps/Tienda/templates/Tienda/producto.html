@@ -19,6 +19,8 @@
       <img src="{% static 'img/comida-gato.jpg' %}" alt="" class="img-item" />
       <span class="precio-item">$15.000</span>
       <button class="boton-item">Agregar al Carrito</button>
+      <p class="skuProducto">23213213</p>
+
     </div>
     <div class="item">
       <span class="titulo-item">Cama para Mascota</span>
@@ -94,7 +96,7 @@
         <span class="carrito-precio-total"> $0 </span>
       </div>
       <button class="btn-pagar">
-        Pagar <i class="fa-solid fa-bag-shopping"></i>
+        <a href="{%  url 'compra' %}">Pagar</a> <i class="fa-solid fa-bag-shopping"></i>
       </button>
     </div>
   </div>
@@ -102,4 +104,23 @@
 
 {% endblock body %} {% block script %}
 <script src="{% static 'js/app.js' %}"></script>
+<script>
+  const btnPagar = document.querySelector(".btn-pagar")
+  btnPagar.addEventListener('click',function(event){
+    event.preventDefault();
+    const storage = localStorage.getItem("myStorage")
+
+    console.log(storage);
+    fetch('{%  url "compra" %}', {
+      method: "POST",
+      credentials: "same-origin",
+      headers: {
+        Accept: "application/json",
+        "X-Requested-With": "XMLHttpRequest", //Necessary to work with request.is_ajax()
+        "X-CSRFToken": '{{csrf_token}}',
+      },
+      body: storage, //JavaScript object of data to POST
+    });
+  })
+</script>
 {% endblock script %}

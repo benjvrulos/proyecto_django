@@ -15,4 +15,4 @@ class User(AbstractUser):
     # objects = CustomUserManager()
 
     def __str__(self):
-        return self.username
+        return "Usuario: {}, Rut: {}".format(self.username,self.rut)

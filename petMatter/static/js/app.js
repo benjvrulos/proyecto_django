@@ -68,20 +68,17 @@ function crearStorageCarrito() {
   let array;
   let storage = JSON.parse(localStorage.getItem("myStorage"));
   if (storage) {
-    console.log("Ya existe un array");
-    console.log(storage);
   } else {
     array = [];
     const obj = JSON.stringify(array);
     localStorage.setItem("myStorage", obj);
-    console.log("Storage creado");
   }
 }
 
 function cargarStorageCarrito() {
   let storage = JSON.parse(localStorage.getItem("myStorage"));
+  console.log(storage);
   if (storage) {
-    console.log("Desde cargar Storage", storage);
     storage.forEach((producto) => {
       agregarItemAlCarrito(
         producto.titulo,
@@ -102,6 +99,7 @@ function agregarAlCarritoClicked(event) {
   var titulo = item.getElementsByClassName("titulo-item")[0].innerText;
   var precio = item.getElementsByClassName("precio-item")[0].innerText;
   var imagenSrc = item.getElementsByClassName("img-item")[0].src;
+  var sku = item.getElementsByClassName("skuProducto")[0].innerText;
   agregarItemAlCarrito(titulo, precio, imagenSrc);
   let storage = JSON.parse(localStorage.getItem("myStorage"));
 
@@ -110,15 +108,15 @@ function agregarAlCarritoClicked(event) {
     let cantidadAnterior = itemRepetido.cantidad;
 
     let index = storage.indexOf(itemRepetido);
-    console.log("ACCEDIENDO DESDE INDEX", storage[index]);
     storage[index] = {
+      sku,
       titulo,
       precio,
       imagenSrc,
       cantidad: cantidadAnterior + 1,
     };
   } else {
-    storage.push({ titulo, precio, imagenSrc, cantidad: 1 });
+    storage.push({ sku,titulo, precio, imagenSrc, cantidad: 1 });
   }
 
   // storage.push(precioFinal);
@@ -154,7 +152,6 @@ function agregarItemAlCarrito(titulo, precio, imagenSrc, cantidad = 1) {
       let precioTotal = document.querySelector(
         ".carrito-precio-total"
       ).textContent;
-      console.log(precioTotal);
       let precioItem = parseFloat(precio.replace("$", "").replace(".", ""));
       let precioTotalNumber = parseFloat(
         precioTotal.replace("$", "").replace(".", "")
@@ -207,16 +204,15 @@ function sumarCantidad(event) {
   const storage = JSON.parse(localStorage.getItem("myStorage"));
   var buttonClicked = event.target;
   var selector = buttonClicked.parentElement;
-  console.log(
-    selector.getElementsByClassName("carrito-item-cantidad")[0].value
-  );
+  
   const nombreItem = selector.parentElement.querySelector(
     ".carrito-item-titulo"
   ).textContent;
   const itemRestarCantidad = storage.find((item) => item.titulo == nombreItem);
   const index = storage.indexOf(itemRestarCantidad);
-  let { titulo, imagenSrc, precio, cantidad } = itemRestarCantidad;
+  let { sku,titulo, imagenSrc, precio, cantidad } = itemRestarCantidad;
   storage[index] = {
+    sku,
     titulo,
     imagenSrc,
     precio,
@@ -236,16 +232,15 @@ function restarCantidad(event) {
   const storage = JSON.parse(localStorage.getItem("myStorage"));
   var buttonClicked = event.target;
   var selector = buttonClicked.parentElement;
-  console.log(
-    selector.getElementsByClassName("carrito-item-cantidad")[0].value
-  );
+  
   const nombreItem = selector.parentElement.querySelector(
     ".carrito-item-titulo"
   ).textContent;
   const itemRestarCantidad = storage.find((item) => item.titulo == nombreItem);
   const index = storage.indexOf(itemRestarCantidad);
-  let { titulo, imagenSrc, precio, cantidad } = itemRestarCantidad;
+  let { sku,titulo, imagenSrc, precio, cantidad } = itemRestarCantidad;
   storage[index] = {
+    sku,
     titulo,
     imagenSrc,
     precio,
@@ -309,7 +304,6 @@ function actualizarTotalCarrito() {
       precioElemento.innerText.replace("$", "").replace(".", "")
     );
     var cantidadItem = item.getElementsByClassName("carrito-item-cantidad")[0];
-    console.log(precio);
     var cantidad = cantidadItem.value;
     total = total + precio * cantidad;
   }
