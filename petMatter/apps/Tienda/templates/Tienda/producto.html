@@ -8,48 +8,19 @@
 <!-- CONTENIDO -->
 <section class="contenedor">
   <div class="contenedor-items">
+    
+    
+    {% for p in productos %}
     <div class="item">
-      <span class="titulo-item">Comida para Perro</span>
-      <img src="{% static 'img/comida-perro.jpg' %}" alt="" class="img-item" />
-      <span class="precio-item">$15.000</span>
+      <span class="titulo-item">{{p.nombre}}</span>
+      <img src="{{p.imagen.url}}" alt="" class="img-item" />
+      <span class="precio-item">${{p.precio}}</span>
       <button class="boton-item">Agregar al Carrito</button>
+      <p class="skuProductoEscondido">{{p.sku}}</p>
     </div>
-    <div class="item">
-      <span class="titulo-item">Comida para Gato</span>
-      <img src="{% static 'img/comida-gato.jpg' %}" alt="" class="img-item" />
-      <span class="precio-item">$15.000</span>
-      <button class="boton-item">Agregar al Carrito</button>
-      <p class="skuProducto">23213213</p>
-
-    </div>
-    <div class="item">
-      <span class="titulo-item">Cama para Mascota</span>
-      <img src="{% static 'img/cama-mascota.jpg' %}" alt="" class="img-item" />
-      <span class="precio-item">$20.000</span>
-      <button class="boton-item">Agregar al Carrito</button>
-    </div>
-    <div class="item">
-      <span class="titulo-item">Correa para Macota</span>
-      <img src="{% static 'img/correa-perro.jpg' %}" alt="" class="img-item" />
-      <span class="precio-item">$15.000</span>
-      <button class="boton-item">Agregar al Carrito</button>
-    </div>
-    <div class="item">
-      <span class="titulo-item">Juguete para Perro</span>
-      <img src="{% static 'img/juguete-perro.jpg' %}" alt="" class="img-item" />
-      <span class="precio-item">$20.000</span>
-      <button class="boton-item">Agregar al Carrito</button>
-    </div>
-    <div class="item">
-      <span class="titulo-item">Plato Metalico</span>
-      <img
-        src="{% static 'img/plato-metalico.jpg' %}"
-        alt=""
-        class="img-item"
-      />
-      <span class="precio-item">$20.000</span>
-      <button class="boton-item">Agregar al Carrito</button>
-    </div>
+    {% endfor %}
+      
+    
   </div>
 
   <div class="carrito" id="carrito">

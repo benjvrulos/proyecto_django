@@ -18,7 +18,8 @@ def mantenedor(request):
     return render(request,'Tienda/mantenedor.html',{'productos':productos,'categorias':categorias})
 
 def productoView(request):
-    return render(request,'Tienda/producto.html')
+    productos = Producto.objects.all()
+    return render(request,'Tienda/producto.html',{'productos':productos})
 
 def agregarProducto(request):
     v_sku = request.POST['skuProducto']
