@@ -27,7 +27,7 @@ def registerView(request):
         return redirect('home')
 
     else:
-        print("Que verga")
+        pass
 
     return render(request,'userAuths/register.html')
 
